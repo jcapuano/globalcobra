@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Command Alkon</title>
+	
+	<meta name="title" content="Command Alkon Inventory Demand Demo">
+	<meta name="description" content="Command Alkon Inventory Demand Demo">
+	
+	<meta name="google-site-verification" content="">
+	<!-- Speaking of Google, don't forget to set your site up: http://google.com/webmasters -->
+	
+	<meta name="author" content="Command Alkon">
+	<meta name="Copyright" content="Copyright Command Alkon, Inc 2012. All Rights Reserved.">
+
+	<!-- Facebook sharing. http://developers.facebook.com/docs/opengraph/ -->
+    <meta property="og:site_name" content="Command Alkon Inventory Demand Demo" />
+	<meta property="og:title" content="Command Alkon Inventory Demand Demo" />
+    <meta property="og:description" content="Command Alkon Inventory Demand Demo" />
+    <meta property="og:image" content="" /> <!-- Thumbnail for sharing. Use absolute URL. Minimum 50x50 -->
+	<meta property="og:type" content="" /><!-- http://developers.facebook.com/docs/opengraph/#types -->
+	
+	<!-- Mobile friendly meta data from Mobile HTML5 Boilerplate -->
+	<meta http-equiv="cleartype" content="on">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<!--
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="apple-touch-icon" href="img/app-icon.png">
+	-->
+	<!-- - size: 114x114
+		 - To prevent iOS from applying its styles to the icon name it thusly: apple-touch-icon-precomposed.png
+		 - No transparency -->
+	
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/overcast/jquery-ui-1.8.21.custom.css">
+	<link rel="stylesheet" type="text/css" href="jqwidgets/styles/jqx.base.css" />
+	
+	<!-- Google is a great source for web fonts -->	
+	<link  href="http://fonts.googleapis.com/css?family=Nunito:700&v1" rel="stylesheet" type="text/css" >
+	
+	<!-- Viewport setting for proper display on devices -->	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+</head>
+<!--
+<body>
+-->
+<body background="img/tiling_stripes.gif" bgcolor="#F9F2F2">
+	<header class="header">
+		<div class="logo">
+			<div class="command">Command</div>
+			<div style="float:left">&nbsp;</div>
+			<div class="alkon">Alkon</div>
+		</div>
+		<div class="title">
+			<span>Inventory Demand</span>
+		</div>
+		<div class="selection">
+			<div class="selectionMode" id="selectionMode">
+				<input type="radio" id="radioDemand" name="selectionMode" checked="checked"/><label for="radioDemand">Demand</label>
+				<input type="radio" id="radioInventory" name="selectionMode"/><label for="radioInventory">On Hand</label>
+			</div>
+			<div class="selectionFilter">
+			
+					<div class="selectionLocationLabel">Location: </div>
+					<div class="selectionLocation">
+						<div  id="menuLocations">
+						</div>
+					</div>
+					
+					<div class="selectionMaterialLabel">Material: </div>
+					<div class="selectionMaterial">
+						<div id="menuMaterials">
+						</div>
+					</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="content">
+	</div>
+    
+	<div id="error">
+		<p id="error-display" class="error-text" data-bind="text: Error, visible: Error().length > 0"></p>
+	</div>
+		
+	<script type="text/html" id="demandTemplate">
+	</script>
+	
+	<script type="text/html" id="inventoryTemplate">
+	</script>
+	
+	<!-- JAVASCRIPT -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendors/jquery-1.7.2.min.js"><\/script>')</script>
+	<!--
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendors/jquery-ui.min.js"><\/script>')</script>
+	-->
+	<script type="text/javascript" src="js/vendors/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/vendors/jquery.json-2.3.min.js"></script>
+	<script type="text/javascript" src="js/vendors/knockout-2.1.0.js"></script>
+	<script type="text/javascript" src="js/vendors/knockout-jquery-ui.widgit.js"></script>
+	<script type="text/javascript" src="js/vendors/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="js/vendors/jquery.ba-bbq.min.js"></script>
+	
+    <script type="text/javascript" src="js/vendors/gettheme.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdropdownlist.js"></script>
+	<script type="text/javascript" src="jqwidgets/jqxradiobutton.js"></script>	
+	
+	<!-- must point to the hub -->
+	<script type="text/javascript" src="js/mocks/cai.MockLocations.js"></script>
+	<script type="text/javascript" src="js/mocks/cai.MockMaterials.js"></script>
+	<script type="text/javascript" src="js/mocks/cai.MockDemand.js"></script>
+	<script type="text/javascript" src="js/mocks/cai.MockInventory.js"></script>
+	<script type="text/javascript" src="js/mocks/cai.MockHubServer.js"></script>
+	<!--
+	-->
+	
+	<script type="text/javascript" src="js/cai.hubClient.js"></script>
+	<script type="text/javascript" src="js/cai.log.js"></script>
+	<script type="text/javascript" src="js/cai.appViewModel.js"></script>
+	<script type="text/javascript" src="js/cai.appDemandModel.js"></script>
+	<script type="text/javascript" src="js/cai.appInventoryModel.js"></script>
+	<script type="text/javascript" src="js/cai.app.js"></script>
+</body>
+</html>

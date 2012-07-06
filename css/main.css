@@ -1,0 +1,152 @@
+/* -------------------------------------------
+		GLOBAL
+----------------------------------------------  */
+body 
+{
+	 display : block;
+	 margin : 0;
+	 padding : 0;
+	 border: 0;
+     height: 100%;
+     /*
+     background: "img/tiling_stripes.gif";
+     background: url(img/tiling_stripes.gif);
+     background-color: "#F9F2F2";
+     */
+}
+
+/* -------------------------------------------
+		HEADER
+----------------------------------------------  */
+
+.header
+{
+	/*
+    background-color: #F9F2F2;
+    background-color : #000;
+    */
+    width : 100%;
+    height : 45px;
+    /*
+    border: 2px dotted;
+    border-color: yellow;
+    */
+}
+.logo
+{
+	/*background-color: #F9F2F2;	*/
+	font-family: Lucida Sans;
+    font-size : 2em;
+    font-weight : bold;
+    float : left;
+    width : 25%;
+    /*
+    border: 2px solid;
+    border-color: red;
+    */
+}
+.command
+{	
+	color : #57a1d5;
+    float : inherit;
+}
+.alkon
+{	
+	color : #f03b43;
+	float : inherit;
+}
+.title
+{
+    color : #FFFFFF;
+    font-family: Lucida Sans;
+    font-size : 2em;
+    float: left;
+    text-align: center;
+    width : 35%;
+    /*
+    border: 2px solid;
+    border-color: green;
+    */
+}
+
+.selection
+{
+	color: #FFFFFF;
+    font-family: Lucida Sans;
+    font-size: 0.75em;
+    float: right;
+    text-align: center;
+    /*width: 60%;*/
+    /*margin: 5px;*/
+    margin-right:5px;
+}
+
+.selectionMode
+{
+    /*width: 33%;*/
+    float: left;
+    /*display:inline;*/
+    color : #000;
+    font-size: 0.65em;
+    margin-top:0.5em;
+}
+
+.selectionFilter
+{
+    /*width: 33%;*/
+    float: right;
+    /*display:inline;*/
+    color : #000;
+}
+
+.selectionLocationLabel
+{
+    float: left;
+    margin-top:0.5em;
+}
+.selectionLocation
+{
+    float: left;
+    margin-top:0.25em;
+}
+
+.selectionMaterialLabel
+{
+    float: left;
+    margin-top:0.5em;
+}
+.selectionMaterial
+{
+    float: left;
+    margin-top:0.25em;
+}
+
+/* -------------------------------------------
+		CONTENT
+----------------------------------------------  */
+#content {
+	padding: 20px 10px;
+	/*text-align: center;*/
+	margin: 0 auto;
+    /*
+    width: 600px;
+    background: #EDE3E3;
+    background: #F9F2F2;
+    */
+    height: 100%;
+}
+
+/*
+#content h1 {
+	font-size: 18px;
+	padding-bottom: 5px;
+}
+*/
+
+/* -------------------------------------------
+		DEMAND
+----------------------------------------------  */
+
+/* -------------------------------------------
+		INVENTORY
+----------------------------------------------  */
