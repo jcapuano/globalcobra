@@ -132,8 +132,14 @@ body
     width: 600px;
     background: #EDE3E3;
     background: #F9F2F2;
-    */
     height: 100%;
+    */
+	position:fixed;
+	top:46px;
+	right:0;
+	bottom:0;
+	left:0;
+	overflow:auto;
 }
 
 /*
@@ -146,6 +152,10 @@ body
 /* -------------------------------------------
 		DEMAND
 ----------------------------------------------  */
+.chartDemand {
+	height: auto;
+    width: auto;
+}
 
 /* -------------------------------------------
 		INVENTORY

@@ -14,13 +14,23 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                },
 	                {
-	                    "type": "will-call",
+	                    "type": "will call",
 	                    "amount": 600,
 	                    "uom": "lbs"
 	                },
 	                {
 	                    "type": "weather permitting",
 	                    "amount": 1800,
+	                    "uom": "lbs"
+	                }
+	            ]
+	        },
+	        {
+	            "startTime": "2012-07-04T12:15:00Z",
+	            "demands": [
+	                {
+	                    "type": "normal",
+	                    "amount": 18500,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -211,16 +221,6 @@ cai.MockDemand = [
 	                {
 	                    "type": "review",
 	                    "amount": 7500,
-	                    "uom": "lbs"
-	                }
-	            ]
-	        },
-	        {
-	            "startTime": "2012-07-04T16:00:00Z",
-	            "demands": [
-	                {
-	                    "type": "normal",
-	                    "amount": 18500,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -239,13 +239,23 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                },
 	                {
-	                    "type": "will-call",
+	                    "type": "will call",
 	                    "amount": 800,
 	                    "uom": "lbs"
 	                },
 	                {
 	                    "type": "weather permitting",
 	                    "amount": 1900,
+	                    "uom": "lbs"
+	                }
+	            ]
+	        },
+	        {
+	            "startTime": "2012-07-04T12:15:00Z",
+	            "demands": [
+	                {
+	                    "type": "normal",
+	                    "amount": 19750,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -439,17 +449,7 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                }
 	            ]
-	        },
-	        {
-	            "startTime": "2012-07-04T16:00:00Z",
-	            "demands": [
-	                {
-	                    "type": "normal",
-	                    "amount": 19750,
-	                    "uom": "lbs"
-	                }
-	            ]
-	        },
+	        }
 	    ]
 	},
 
@@ -464,13 +464,23 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                },
 	                {
-	                    "type": "will-call",
+	                    "type": "will call",
 	                    "amount": 200,
 	                    "uom": "lbs"
 	                },
 	                {
 	                    "type": "weather permitting",
 	                    "amount": 750,
+	                    "uom": "lbs"
+	                }
+	            ]
+	        },
+	        {
+	            "startTime": "2012-07-04T12:15:00Z",
+	            "demands": [
+	                {
+	                    "type": "normal",
+	                    "amount": 15650,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -664,17 +674,7 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                }
 	            ]
-	        },
-	        {
-	            "startTime": "2012-07-04T16:00:00Z",
-	            "demands": [
-	                {
-	                    "type": "normal",
-	                    "amount": 15650,
-	                    "uom": "lbs"
-	                }
-	            ]
-	        },
+	        }
 	    ]
 	},
     
@@ -689,13 +689,23 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                },
 	                {
-	                    "type": "will-call",
+	                    "type": "will call",
 	                    "amount": 100,
 	                    "uom": "lbs"
 	                },
 	                {
 	                    "type": "weather permitting",
 	                    "amount": 250,
+	                    "uom": "lbs"
+	                }
+	            ]
+	        },
+	        {
+	            "startTime": "2012-07-04T12:15:00Z",
+	            "demands": [
+	                {
+	                    "type": "normal",
+	                    "amount": 9850,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -889,17 +899,7 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                }
 	            ]
-	        },
-	        {
-	            "startTime": "2012-07-04T16:00:00Z",
-	            "demands": [
-	                {
-	                    "type": "normal",
-	                    "amount": 9850,
-	                    "uom": "lbs"
-	                }
-	            ]
-	        },
+	        }
 	    ]
 	},
 
@@ -916,13 +916,23 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                },
 	                {
-	                    "type": "will-call",
+	                    "type": "will call",
 	                    "amount": 600,
 	                    "uom": "lbs"
 	                },
 	                {
 	                    "type": "weather permitting",
 	                    "amount": 1800,
+	                    "uom": "lbs"
+	                }
+	            ]
+	        },
+	        {
+	            "startTime": "2012-07-04T12:15:00Z",
+	            "demands": [
+	                {
+	                    "type": "normal",
+	                    "amount": 18500,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -1116,16 +1126,6 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                }
 	            ]
-	        },
-	        {
-	            "startTime": "2012-07-04T16:00:00Z",
-	            "demands": [
-	                {
-	                    "type": "normal",
-	                    "amount": 18500,
-	                    "uom": "lbs"
-	                }
-	            ]
 	        }
 	    ]
 	},
@@ -1141,13 +1141,23 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                },
 	                {
-	                    "type": "will-call",
+	                    "type": "will call",
 	                    "amount": 800,
 	                    "uom": "lbs"
 	                },
 	                {
 	                    "type": "weather permitting",
 	                    "amount": 1900,
+	                    "uom": "lbs"
+	                }
+	            ]
+	        },
+	        {
+	            "startTime": "2012-07-04T12:15:00Z",
+	            "demands": [
+	                {
+	                    "type": "normal",
+	                    "amount": 19750,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -1341,17 +1351,7 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                }
 	            ]
-	        },
-	        {
-	            "startTime": "2012-07-04T16:00:00Z",
-	            "demands": [
-	                {
-	                    "type": "normal",
-	                    "amount": 19750,
-	                    "uom": "lbs"
-	                }
-	            ]
-	        },
+	        }
 	    ]
 	},
 
@@ -1366,13 +1366,23 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                },
 	                {
-	                    "type": "will-call",
+	                    "type": "will call",
 	                    "amount": 200,
 	                    "uom": "lbs"
 	                },
 	                {
 	                    "type": "weather permitting",
 	                    "amount": 750,
+	                    "uom": "lbs"
+	                }
+	            ]
+	        },
+	        {
+	            "startTime": "2012-07-04T12:15:00Z",
+	            "demands": [
+	                {
+	                    "type": "normal",
+	                    "amount": 15650,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -1566,17 +1576,7 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                }
 	            ]
-	        },
-	        {
-	            "startTime": "2012-07-04T16:00:00Z",
-	            "demands": [
-	                {
-	                    "type": "normal",
-	                    "amount": 15650,
-	                    "uom": "lbs"
-	                }
-	            ]
-	        },
+	        }
 	    ]
 	},
     
@@ -1591,13 +1591,23 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                },
 	                {
-	                    "type": "will-call",
+	                    "type": "will call",
 	                    "amount": 100,
 	                    "uom": "lbs"
 	                },
 	                {
 	                    "type": "weather permitting",
 	                    "amount": 250,
+	                    "uom": "lbs"
+	                }
+	            ]
+	        },
+	        {
+	            "startTime": "2012-07-04T12:15:00Z",
+	            "demands": [
+	                {
+	                    "type": "normal",
+	                    "amount": 9850,
 	                    "uom": "lbs"
 	                }
 	            ]
@@ -1791,17 +1801,7 @@ cai.MockDemand = [
 	                    "uom": "lbs"
 	                }
 	            ]
-	        },
-	        {
-	            "startTime": "2012-07-04T16:00:00Z",
-	            "demands": [
-	                {
-	                    "type": "normal",
-	                    "amount": 9850,
-	                    "uom": "lbs"
-	                }
-	            ]
-	        },
+	        }
 	    ]
 	}
 ];

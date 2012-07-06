@@ -31,5 +31,23 @@ cai.HubClient = function() {
         	self.appViewModel.onSetMaterials(materials);
         }
 	}
+
+    self.getDemand = function(location, material, starttime, intervals) {
+    	cai.server.onGetDemand(location, material, starttime, intervals);
+    }
+	self.onSetDemand = function(demands) {
+    	if (self.appViewModel) {
+        	self.appViewModel.onSetDemand(demands);
+        }
+	}
+    
+    self.getOnHand = function(location) {
+    	cai.server.onGetOnHand(location);
+    }
+	self.onSetOnHand = function(onhands) {
+    	if (self.appViewModel) {
+        	self.appViewModel.onSetOnHand(onhands);
+        }
+	}
     
 };

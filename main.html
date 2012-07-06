@@ -82,6 +82,7 @@
 	</header>
 
 	<div id="content">
+		<div data-bind="template: { name: displayMode }"></div>
 	</div>
     
 	<div id="error">
@@ -89,9 +90,15 @@
 	</div>
 		
 	<script type="text/html" id="demandTemplate">
+		<div id="chartDemand" class="chartDemand">
+			Projected Demand chart goes here
+		</div>
 	</script>
 	
-	<script type="text/html" id="inventoryTemplate">
+	<script type="text/html" id="onhandTemplate">
+		<div id="chartInventory">
+			On Hand Inventory chart goes here
+		</div>
 	</script>
 	
 	<!-- JAVASCRIPT -->
@@ -115,9 +122,9 @@
     <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxlistbox.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxdropdownlist.js"></script>
-	<script type="text/javascript" src="jqwidgets/jqxradiobutton.js"></script>	
+	<script type="text/javascript" src="jqwidgets/jqxchart.js"></script>	
 	
-	<!-- must point to the hub -->
+	<!-- must point to the hub, where ever it may be -->
 	<script type="text/javascript" src="js/mocks/cai.MockLocations.js"></script>
 	<script type="text/javascript" src="js/mocks/cai.MockMaterials.js"></script>
 	<script type="text/javascript" src="js/mocks/cai.MockDemand.js"></script>
@@ -126,11 +133,15 @@
 	<!--
 	-->
 	
-	<script type="text/javascript" src="js/cai.hubClient.js"></script>
 	<script type="text/javascript" src="js/cai.log.js"></script>
+	<script type="text/javascript" src="js/cai.time.js"></script>
+	<script type="text/javascript" src="js/cai.hubClient.js"></script>
+	<script type="text/javascript" src="js/cai.DemandModel.js"></script>
+	<!--
+	<script type="text/javascript" src="js/cai.demandViewModel.js"></script>
+	<script type="text/javascript" src="js/cai.onHandViewModel.js"></script>
+	-->
 	<script type="text/javascript" src="js/cai.appViewModel.js"></script>
-	<script type="text/javascript" src="js/cai.appDemandModel.js"></script>
-	<script type="text/javascript" src="js/cai.appInventoryModel.js"></script>
 	<script type="text/javascript" src="js/cai.app.js"></script>
 </body>
 </html>
