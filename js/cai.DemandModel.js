@@ -49,11 +49,12 @@ cai.DemandModel = function(starttime, demands) {
     self.construct();
 };
 
-cai.DemandsModel = function(demands) {
+cai.DemandsModel = function(demands, materials) {
 
 	var self = this;
     
     self._demand = demands.length > 0 ? demands[0] : {};
+    self._materials = materials;
     self.Location = self._demand.locationCode;
     self.Material = self._demand.materialCode;
     self.Min = 0;
@@ -73,34 +74,48 @@ cai.DemandsModel = function(demands) {
     
     self.buildDemands = function() {
         // loop over all time buckets
-	    ko.utils.arrayForEach(self._demand.timeBuckets, function(demand) {
-        	var dvm = new cai.DemandModel(demand.startTime, demand.demands);
-            self.Demands.push(dvm);
-            
-            // loop over each demand type
-		    ko.utils.arrayForEach(demand.demands, function(item) {
-		        var value = parseFloat(item.amount);
-		        if (!isNaN(value) && value > self.Max) {
-                	self.Max = value;
-		        }
-                if (!self.UOM || self.UOM.length < 1) {
-                	self.UOM = item.uom;
-                }
-                
-                if (self.DemandTypes.indexOf(item.type) < 0) {
-                	self.DemandTypes.push(item.type);
-                }
+        if (self.Location) {
+		    ko.utils.arrayForEach(self._demand.timeBuckets, function(demand) {
+	        	var dvm = new cai.DemandModel(demand.startTime, demand.demands);
+	            self.Demands.push(dvm);
+	            
+	            // loop over each demand type
+			    ko.utils.arrayForEach(demand.demands, function(item) {
+			        var value = parseFloat(item.amount);
+			        if (!isNaN(value) && value > self.Max) {
+	                	self.Max = value;
+			        }
+	                if (!self.UOM || self.UOM.length < 1) {
+	                	self.UOM = item.uom;
+	                }
+                    
+	                if (self.DemandTypes.indexOf(item.type) < 0) {
+	                	self.DemandTypes.push(item.type);
+	                }
+			    });
 		    });
-	    });
-        
-        self.DemandTypes.sort();
-        
-	    ko.utils.arrayForEach(self.Demands, function(demand) {
-        	demand.defaultMissingTypes(self.DemandTypes);
-	    });
+	        
+	        self.DemandTypes.sort();
+	        
+		    ko.utils.arrayForEach(self.Demands, function(demand) {
+	        	demand.defaultMissingTypes(self.DemandTypes);
+		    });
+        }
+    }
+    
+    self.setMaterial = function() {
+    	var material = ko.utils.arrayFirst(self._materials, function(item) {
+            return item.materialCode == self._demand.materialCode;
+        });
+
+        if (material) {
+        	self.Max = material.capacity;
+            self.UOM = material.uom;
+        }
     }
 	
     self.construct = function() {
+    	//self.setMaterial();
     	self.buildDemands();
         self.buildSeries();
         self.Interval = Math.floor((self.Max - self.Min) / 10.0);

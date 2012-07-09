@@ -6,10 +6,15 @@ cai.AppViewModel = function() {
     self.Error = ko.observable("");
     self._mode = ko.observable("demand");
     self._intervals = 16;
+    self._materials = [];
     
     self.displayMode = function() {
     	return self._mode() + "Template";
     }
+    
+    self.displayMaterialSelection = ko.computed(function() {
+    	return (self._mode() == "demand");
+    })
     
 	self.init = function() {
     
@@ -26,11 +31,8 @@ cai.AppViewModel = function() {
     //  PUBLIC
     //--------------------------------------
     self.refresh = function() {
-		cai.log("Retrieving Locations...");
-        hub.getLocations();
-        
-		cai.log("Retrieving Materials...");
-        hub.getMaterials();
+    	self.refreshLocations();
+    	self.refreshMaterials();
         
         self.onDemandModeSelected();	// default to demand view
     }
@@ -51,14 +53,13 @@ cai.AppViewModel = function() {
     
     	var json = (typeof materials == "string") ? $.evalJSON(materials) : materials;
         
-        var mnuLocation = $("#menuLocations");
-        var selectedLocation = mnuLocation ? $.trim(mnuLocation.text()) : "";
+        var selectedLocation = self.getSelectedLocation();
         
-        var filtered = ko.utils.arrayFilter(json, function(material) {
-            return selectedLocation && selectedLocation.length > 0 && material.locationCode == selectedLocation;
+        self._materials = ko.utils.arrayFilter(json, function(material) {
+            return (!selectedLocation || selectedLocation.length < 1 || material.locationCode == selectedLocation);
         });
         
-        self.loadMenu("#menuMaterials", filtered, "materialCode", 150, self.onMaterialSelected);
+        self.loadMenu("#menuMaterials", self._materials, "materialCode", 150, self.onMaterialSelected);
         self.stopWait();
 	}
     
@@ -86,22 +87,23 @@ cai.AppViewModel = function() {
     self.onDemandModeSelected = function() {
     	cai.log("Selected Demand Mode");
     	self._mode("demand");
-        self.startWait("Requesting Demand...");
-        hub.getDemand(self.getSelectedLocation(), self.getSelectedMaterial(), cai.now(), self._intervals);
+        self.getDemand();
     }
     
     self.onInventoryModeSelected = function() {
     	cai.log("Selected Inventory Mode");
     	self._mode("onhand");
         self.startWait("Requesting On Hand Inventory...");
-        hub.getOnHand(self.getSelectedLocation());
+        self.getOnHand();
     }
     
     self.onLocationSelected = function (event) {
 	    if (event.args) {
 	        var item = event.args.item;
 	        if (item) {
-            	alert("Selected Location: " + item.value);
+            	cai.log("Selected Location: " + item.value);
+                self.refreshMaterials();
+                self.refreshData();
 	        }
 	    }
 	}        
@@ -110,7 +112,8 @@ cai.AppViewModel = function() {
 	    if (event.args) {
 	        var item = event.args.item;
 	        if (item) {
-            	alert("Selected Material: " + item.value);
+            	cai.log("Selected Material: " + item.value);
+                self.refreshData();
 	        }
 	    }
 	}        
@@ -119,6 +122,9 @@ cai.AppViewModel = function() {
     	if (self._mode() == "demand") {
         	self.resizeDemandChart();
 		}
+        else {
+        	self.resizeOnHandChart();
+        }
 	}       
     
     //--------------------------------------
@@ -134,6 +140,35 @@ cai.AppViewModel = function() {
         var mnuMaterial = $("#menuMaterials");
         
         return mnuMaterial ? $.trim(mnuMaterial.text()) : "";
+    }
+    
+    self.getDemand = function() {
+        self.startWait("Requesting Demand...");
+        hub.getDemand(self.getSelectedLocation(), self.getSelectedMaterial(), cai.now(), self._intervals);
+    }
+    
+    self.getOnHand = function() {
+        self.startWait("Requesting On Hand...");
+        hub.getOnHand(self.getSelectedLocation());
+	}        
+    
+    self.refreshLocations = function() {
+		cai.log("Retrieving Locations...");
+        hub.getLocations();
+	}
+    
+    self.refreshMaterials = function() {
+		cai.log("Retrieving Materials...");
+        hub.getMaterials();
+    }
+    
+    self.refreshData = function() {
+    	if (self._mode() == "demand") {
+        	self.getDemand();
+		}
+        else {
+        	self.getOnHand();
+		}            
     }
     
     self.loadMenu = function(elemid, data, fieldname, width, selecthandler) {
@@ -157,12 +192,13 @@ cai.AppViewModel = function() {
     
     self.loadDemandChart = function(demands) {
     
-    	var dm = new cai.DemandsModel(demands);
+    	var dm = new cai.DemandsModel(demands, self._materials);
     
         // prepare jqxChart settings
         var settings = {
-            title: "Inventory Demand",
-            description: "Demand projected for current schedule",
+            //title: "Inventory Demand",
+            //description: "Demand projected for current schedule",
+            title: "Demand projected for current schedule",
             enableAnimations: true,
             showLegend: true,
             padding: { left: 5, top: 5, right: 5, bottom: 5 },
@@ -222,6 +258,8 @@ cai.AppViewModel = function() {
         $('#chartDemand').jqxChart('refresh');
     }
 
+    self.resizeOnHandChart = function() {
+    }
     
     self.startWait = function(title) {
         $.blockUI({ message: '<h1><img src="img/ajax-loader.gif" /> ' + title + '</h1>' });
