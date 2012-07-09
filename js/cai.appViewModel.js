@@ -35,6 +35,7 @@ cai.AppViewModel = function() {
     	self.refreshMaterials();
         
         self.onDemandModeSelected();	// default to demand view
+        //self.onInventoryModeSelected();
     }
     
     //--------------------------------------
@@ -77,6 +78,7 @@ cai.AppViewModel = function() {
     
     	var json = (typeof onhands == "string") ? $.evalJSON(onhands) : onhands;
         
+        self.loadOnHandChart(json);
         self.stopWait();
 	}
     
@@ -198,7 +200,7 @@ cai.AppViewModel = function() {
         var settings = {
             //title: "Inventory Demand",
             //description: "Demand projected for current schedule",
-            title: "Demand projected for current schedule",
+            title: "Projected Demand for " + dm.Material + " at Location " + dm.Location,
             enableAnimations: true,
             showLegend: true,
             padding: { left: 5, top: 5, right: 5, bottom: 5 },
@@ -240,10 +242,51 @@ cai.AppViewModel = function() {
         };        
         
         // setup the chart
-        $('#chartDemand').empty();
+        $('#content').empty();
+        $('#content').append("<div id='chartDemand' class='chartDemand'></div>");
         $('#chartDemand').jqxChart(settings);
         
     	self.resizeDemandChart();
+	}
+    
+    self.loadOnHandChart = function(onhands) {
+    
+    	var ohm = new cai.OnHandsModel(onhands);
+    
+        // prepare jqxChart settings
+        var settings = {
+            //title: "On Hand Inventory",
+            //description: "On Hand Inventory for current location",
+            title: "On Hand Inventory at Location " + ohm.Location,
+            enableAnimations: true,
+            showLegend: false,
+            padding: { left: 5, top: 5, right: 5, bottom: 5 },
+            titlePadding: { left: 90, top: 0, right: 0, bottom: 10 },
+            source: ohm.Inventories,
+            categoryAxis:
+                {
+                    textRotationAngle: 0,
+                    dataField: 'Material',
+                    showTickMarks: true,
+                    tickMarksInterval: 1,
+                    tickMarksColor: '#888888',
+                    unitInterval: 1,
+                    showGridLines: false,
+                    gridLinesInterval: 1,
+                    gridLinesColor: '#888888',
+                    axisSize: 'auto'
+                },
+            colorScheme: 'scheme06',
+            seriesGroups: ohm.SeriesGroups
+        };        
+        
+        // setup the chart
+        $('#content').empty();
+        $('#content').append("<div id='chartOnHand' class='chartOnHand'></div>");
+        
+        $('#chartOnHand').jqxChart(settings);
+        
+    	self.resizeOnHandChart();
 	}
     
     self.resizeDemandChart = function() {
@@ -259,6 +302,14 @@ cai.AppViewModel = function() {
     }
 
     self.resizeOnHandChart = function() {
+        var container = $("#content");
+        //$('#chartOnHand').width(container.innerWidth());
+        //$('#chartOnHand').height(container.innerHeight());
+        
+        $('#chartOnHand').width(container.innerWidth() - 20);
+        $('#chartOnHand').height(window.innerHeight - 100);
+        
+        $('#chartOnHand').jqxChart('refresh');
     }
     
     self.startWait = function(title) {

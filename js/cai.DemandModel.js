@@ -1,5 +1,9 @@
 var cai = cai || {};  
 
+/*
+	so, wth is going on here? basically, the model json must be pivoted and flattened for the jqwidget chart...
+*/
+
 cai.DemandModel = function(starttime, demands) {
 	var self = this;
     
@@ -63,7 +67,7 @@ cai.DemandsModel = function(demands, materials) {
     self.UOM = "";
     self.Demands = [];
     self.DemandTypes = [];
-    self.Series = []
+    self.Series = [];
     
     self.buildSeries = function() {
         
