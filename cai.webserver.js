@@ -27,7 +27,7 @@ cai.WebServer = function(port, folder) {
 		    var filePath = request.url;    
 		    if (filePath == '/')        
             	filePath = '/' + self.defaultHtml;             
-            filePath = self.Folder + filePath
+            filePath = self.Folder + filePath;
 		    var extname = path.extname(filePath);    
 		    var contentType = 'text/html';    
 		    switch (extname) {        

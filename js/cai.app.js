@@ -21,6 +21,9 @@ cai.Application = function() {
     }
 };
 
+var cHubHost = "localhost";
+var cHubPort = "3030";
+
 var app = null;
 var hub = null;
 
@@ -31,7 +34,7 @@ $(document).ready(function(){
     app.init();
     
     cai.log("Initializing the Hub");
-    hub = new cai.HubClient();
+    hub = new cai.HubClient(cHubHost, cHubPort);
     hub.init();
     
     cai.log("Refreshing views");

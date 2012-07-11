@@ -59,6 +59,14 @@ cai.DemandsModel = function(demands, materials) {
     
     self._demand = demands.length > 0 ? demands[0] : {};
     self._materials = materials;
+    self._colors = new cai.Colors([
+        "#72FF00",
+        "#FF7B00",
+        "#0094F7",
+        "#CE00F7",
+    	"#FF0000", 
+        "#F7EF00"
+    ]);
     self.Location = self._demand.locationCode;
     self.Material = self._demand.materialCode;
     self.Min = 0;
@@ -72,7 +80,7 @@ cai.DemandsModel = function(demands, materials) {
     self.buildSeries = function() {
         
 	    ko.utils.arrayForEach(self.DemandTypes, function(type) {
-        	self.Series.push({ dataField: type, displayText: type});
+        	self.Series.push({ dataField: type, displayText: type});//, color: self._colors.nextColor()});
 	    });
     }
     

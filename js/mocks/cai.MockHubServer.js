@@ -5,8 +5,11 @@ cai.server.onGetLocations = function() {
 	hub.onSetLocations(cai.MockLocations);
 }
 
-cai.server.onGetMaterials = function() {
-	hub.onSetMaterials(cai.MockMaterials);
+cai.server.onGetMaterials = function(location) {
+	var materials = ko.utils.arrayFilter(cai.MockMaterials, function(material) {
+            return material.locationCode == location;
+        });
+	hub.onSetMaterials(materials);
 }
 
 cai.server.onGetDemand = function(location, material, starttime, intervals) {

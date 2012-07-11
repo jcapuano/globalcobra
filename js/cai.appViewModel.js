@@ -32,10 +32,8 @@ cai.AppViewModel = function() {
     //--------------------------------------
     self.refresh = function() {
     	self.refreshLocations();
-    	self.refreshMaterials();
-        
-        self.onDemandModeSelected();	// default to demand view
-        //self.onInventoryModeSelected();
+        // will refresh materials once locations are received
+        // will refresh chart once materials are received
     }
     
     //--------------------------------------
@@ -47,6 +45,7 @@ cai.AppViewModel = function() {
     	var json = (typeof locations == "string") ? $.evalJSON(locations) : locations;
         self.loadMenu("#menuLocations", json, "locationCode", 50, self.onLocationSelected);
         self.stopWait();
+    	self.refreshMaterials();
 	}
 
     self.onSetMaterials = function(materials) {
@@ -62,12 +61,15 @@ cai.AppViewModel = function() {
         
         self.loadMenu("#menuMaterials", self._materials, "materialCode", 150, self.onMaterialSelected);
         self.stopWait();
+
+        self.refreshData(); 	// update chart
 	}
     
     self.onSetDemand = function(demands) {
     	cai.log("Set Demand");
     
     	var json = (typeof demands == "string") ? $.evalJSON(demands) : demands;
+        // if "demand" mode and "selection" filter matches received data (location/material)
         
         self.loadDemandChart(json);
         self.stopWait();
@@ -77,6 +79,8 @@ cai.AppViewModel = function() {
     	cai.log("Set On Hand");
     
     	var json = (typeof onhands == "string") ? $.evalJSON(onhands) : onhands;
+        
+        // if "onhand" mode and "selection" filter matches received data (location)
         
         self.loadOnHandChart(json);
         self.stopWait();
@@ -161,7 +165,7 @@ cai.AppViewModel = function() {
     
     self.refreshMaterials = function() {
 		cai.log("Retrieving Materials...");
-        hub.getMaterials();
+        hub.getMaterials(self.getSelectedLocation());
     }
     
     self.refreshData = function() {
@@ -201,10 +205,11 @@ cai.AppViewModel = function() {
             //title: "Inventory Demand",
             //description: "Demand projected for current schedule",
             title: "Projected Demand for " + dm.Material + " at Location " + dm.Location,
-            enableAnimations: true,
+            enableAnimations: false,
             showLegend: true,
             padding: { left: 5, top: 5, right: 5, bottom: 5 },
             titlePadding: { left: 90, top: 0, right: 0, bottom: 10 },
+            backgroundColor: 'LightGray',
             source: dm.Demands,
             categoryAxis:
                 {
@@ -258,10 +263,11 @@ cai.AppViewModel = function() {
             //title: "On Hand Inventory",
             //description: "On Hand Inventory for current location",
             title: "On Hand Inventory at Location " + ohm.Location,
-            enableAnimations: true,
+            enableAnimations: false,
             showLegend: false,
             padding: { left: 5, top: 5, right: 5, bottom: 5 },
             titlePadding: { left: 90, top: 0, right: 0, bottom: 10 },
+            backgroundColor: 'LightGray',
             source: ohm.Inventories,
             categoryAxis:
                 {

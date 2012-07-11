@@ -1,6 +1,6 @@
 var cai = cai || {};  
 
-cai.HubClient = function() {
+cai.HubClient = function(host, port) {
 	var self = this;
     
     // General
@@ -23,8 +23,8 @@ cai.HubClient = function() {
         }
 	}
 
-    self.getMaterials = function() {
-    	cai.server.onGetMaterials();
+    self.getMaterials = function(location) {
+    	cai.server.onGetMaterials(location);
     }
     self.onSetMaterials = function(materials) {
     	if (self.appViewModel) {
