@@ -150,7 +150,7 @@ cai.AppViewModel = function() {
     
     self.getDemand = function() {
         self.startWait("Requesting Demand...");
-        hub.getDemand(self.getSelectedLocation(), self.getSelectedMaterial(), cai.now(), self._intervals);
+        hub.getDemand(self.getSelectedLocation(), self.getSelectedMaterial(), cai.nowJSON(), self._intervals);
     }
     
     self.getOnHand = function() {
